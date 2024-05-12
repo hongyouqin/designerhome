@@ -1,0 +1,9 @@
+[bot]
+    bot_token = "123"
+[logger]
+    name = "bot.log"
+    size = "10 MB"
+    level = "DEBUG"
+
+
+
