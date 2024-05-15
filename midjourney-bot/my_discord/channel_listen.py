@@ -15,17 +15,21 @@ async def on_read():
 
 @bot.event
 async def on_message(message: Message):
+    logger.debug(f"on_message content: {message.content}")
     pass
 
 
 @bot.event
-async def on_message_edit(before, after):
+async def on_message_edit(before: Message, after: Message):
     """
     处理敏感词
     """
+    logger.debug(f"on_message_edit before content: {before.content}")
+    logger.debug(f"on_message_edit after content: {before.content}")
     pass
 
 
 @bot.event
 async def on_message_delete(message):
+    logger.debug(f"on_message_delete content: {message.content}")
     pass
