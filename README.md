@@ -5,3 +5,5 @@
 -i https://pypi.tuna.tsinghua.edu.cn/simple some-package
 ## discord.py文档
 https://discordpy.readthedocs.io/en/stable/api.html?highlight=on_message#discord.on_message
+## 交互命令
+https://github.com/discord/discord-api-docs/blob/main/docs/interactions/Application_Commands.md
