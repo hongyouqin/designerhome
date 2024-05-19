@@ -7,6 +7,7 @@ package service
 
 import (
 	"context"
+	"designer-service/internal/model"
 )
 
 type (
