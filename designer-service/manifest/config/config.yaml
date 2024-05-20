@@ -1,0 +1,19 @@
+server:
+  address: ":8000"
+  openapiPath: "/api.json"
+  swaggerPath: "/swagger"
+
+logger:
+  logger:
+  path: "./log/run"
+  file: "{Y-m-d}.log"
+  level: "all"
+  stdout: false
+discord:
+  trigger_url: "https://discord.com/api/v9/interactions"
+  #token值，目前是静态的
+  user_token: "MTA5MjYzODQ3Njc2MTA1OTQ2OQ.G2oJOk.30_p7872ES3zAg3HOIEkIl5rXSk8FRI1jF4tW4"
+  #服务器id
+  guild_id: "1194298259775164506"
+  #频道id
+  channel_id: "1194298259775164510"

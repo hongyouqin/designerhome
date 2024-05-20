@@ -38,6 +38,7 @@ func (s *sMjCmd) GenImage(ctx context.Context, input model.TriggerImageInput) (o
 			},
 		},
 	})
+	g.Log().Debug(ctx, "payload: ", payload)
 	r, err := client.Post(ctx, trigger_url.String(), payload)
 	if err != nil {
 		return nil, err
