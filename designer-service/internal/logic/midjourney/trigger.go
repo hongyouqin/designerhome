@@ -23,10 +23,11 @@ func init() {
 func (s *sMjCmd) GenImage(ctx context.Context, input model.TriggerImageInput) (out *model.TriggerImageOutput, err error) {
 	trigger_url, _ := g.Cfg().Get(ctx, "discord.trigger_url")
 	user_token, _ := g.Cfg().Get(ctx, "discord.user_token")
+	g.Log().Debug(ctx, "trigger_url: ", trigger_url, "user_token:", user_token)
 	client := g.Client()
 	client.SetHeader("Content-Type", "application/json")
 	client.SetHeader("Authorization", user_token.String())
-	payload := model.TriggerPayloadWrap(3, g.Map{
+	payload := model.TriggerPayloadWrap(2, g.Map{
 		"version": "1",
 		"id":      "123",
 		"name":    "imagine",
