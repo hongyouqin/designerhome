@@ -9,6 +9,9 @@ logger:
   file: "{Y-m-d}.log"
   level: "all"
   stdout: false
+proxy:
+  url: "http://43.153.186.38:8000"
+
 discord:
   trigger_url: "https://discord.com/api/v9/interactions"
   #token值，目前是静态的
@@ -22,4 +25,3 @@ discord:
   #mj 版本,这个可能会变，要实时关注
   version: "1237876415471554623"
   id: "938956540159881230"
-  

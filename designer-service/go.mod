@@ -3,6 +3,7 @@ module designer-service
 go 1.18
 
 require (
+	github.com/elazarl/goproxy v0.0.0-20231117061959-7cc037d33fb5
 	github.com/gogf/gf v1.16.9
 	github.com/gogf/gf/v2 v2.7.0
 )
