@@ -4,6 +4,7 @@ import (
 	"context"
 	"designer-service/internal/model"
 	"designer-service/internal/service"
+	"encoding/json"
 
 	"github.com/gogf/gf/v2/frame/g"
 )
@@ -49,7 +50,13 @@ func (s *sMjCmd) GenImage(ctx context.Context, input model.TriggerImageInput) (o
 	}
 	defer r.Close()
 	resultByte := r.ReadAll()
+	if resultByte == nil {
+		return nil, nil
+	}
+	out = &model.TriggerImageOutput{}
+	json.Unmarshal(resultByte, out)
+
 	result := string(resultByte)
 	g.Log().Info(ctx, "result: ", result)
-	return nil, nil
+	return out, nil
 }

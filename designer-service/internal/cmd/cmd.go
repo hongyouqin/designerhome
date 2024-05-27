@@ -39,7 +39,7 @@ var (
 						return
 					}
 					r.Request.URL = parseURL
-					g.Log().Info(ctx, "走代理： ", target)
+					g.Log().Info(ctx, "go proxy： ", target)
 					proxy.ServeHTTP(r.Response.Writer, r.Request)
 				})
 			})

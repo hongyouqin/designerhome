@@ -17,11 +17,13 @@ func (c *ControllerV1) ImagineCmd(ctx context.Context, req *v1.ImagineCmdReq) (r
 		Prompt:   req.Prompt,
 		ImageUrl: req.ImageUrl,
 	}
-	_, err = service.MjCmd().GenImage(ctx, input)
+	out, err := service.MjCmd().GenImage(ctx, input)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, gerror.NewCode(gcode.CodeInternalError, err.Error())
 	}
-	res = &v1.ImagineCmdRes{}
+	if out != nil {
+		return nil, gerror.NewCode(gcode.New(out.Code, out.Message, ""))
+	}
 	return res, nil
 }

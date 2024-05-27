@@ -10,7 +10,7 @@ logger:
   level: "all"
   stdout: false
 proxy:
-  url: "http://43.153.186.38:8000"
+  url: "http://43.130.233.13:8000"
 
 discord:
   trigger_url: "https://discord.com/api/v9/interactions"

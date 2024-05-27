@@ -7,4 +7,6 @@ type TriggerImageInput struct {
 }
 
 type TriggerImageOutput struct {
+	Message string `json:"message" dc:"信息"`
+	Code    int    `json:"code" dc:"返回码"`
 }
