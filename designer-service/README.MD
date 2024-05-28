@@ -11,5 +11,4 @@ GOOS=linux GOARCH=amd64 go build -o mj_server main.go
 $env:CGO_ENABLED="0"
 $env:GOOS="linux"
 $env:GOARCH="amd64"
-
-go build -o output.exe main.go
+go build -o mj_server main.go
