@@ -1,4 +1,10 @@
 # UI设计师平台相关服务
+# ui设计
+https://lanhuapp.com/link/#/invite?sid=lxwBWfXa
+分享人: UI设计
+团队名称: 1的团队
+相关项目: AI
+
 
 # 技术文档
 ## pip清华镜像源
