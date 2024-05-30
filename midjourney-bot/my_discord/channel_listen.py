@@ -4,17 +4,21 @@ from loguru import logger
 
 intents = Intents.default()
 intents.message_content = True
+intents.messages = True
 bot = commands.Bot(command_prefix="", intents=intents)
 
 
 @bot.event
-async def on_read():
+async def on_ready():
     logger.debug(f"Logged in as {bot.user} (ID: {bot.user.id})")
     pass
 
 
 @bot.event
 async def on_message(message: Message):
+    if message.author == bot.user:
+        logger.debug(f"on_message owner: {bot.user}")
+        return
     logger.debug(f"on_message content: {message.content}")
     pass
 
