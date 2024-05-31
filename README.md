@@ -13,3 +13,10 @@ https://lanhuapp.com/link/#/invite?sid=lxwBWfXa
 https://discordpy.readthedocs.io/en/stable/api.html?highlight=on_message#discord.on_message
 ## 交互命令
 https://github.com/discord/discord-api-docs/blob/main/docs/interactions/Application_Commands.md
+## nsq教程
+https://www.cnblogs.com/yezigege/p/13791476.html
+
+## git操作
+### 取消代理
+git config --global --unset http.proxy
+git config --global --unset https.proxy

@@ -1,6 +1,10 @@
 from discord import Intents, Message
 from discord.ext import commands
 from loguru import logger
+from my_discord.msg_handle import (
+    match_user_id,
+    TriggerStatus
+)
 
 intents = Intents.default()
 intents.message_content = True
@@ -19,7 +23,17 @@ async def on_message(message: Message):
     if message.author == bot.user:
         logger.debug(f"on_message owner: {bot.user}")
         return
-    logger.debug(f"on_message content: {message.content}")
+    user_id = match_user_id(message.content)
+    if user_id is None:
+        logger.error(f"The msg={message.content} format is not true.")
+        return
+    if message.content.find("Waiting to start") != -1:
+        status = TriggerStatus.START
+    elif message.content.find("(Stopped)") != -1:
+         status = TriggerStatus.ERROR
+    else:
+        status = TriggerStatus.END
+    logger.debug(f"on_message status={status} content: {message.content}")
     pass
 
 
