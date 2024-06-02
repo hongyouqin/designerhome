@@ -1,13 +1,23 @@
 from loguru import logger
-from my_discord import bot
+from my_discord import bot, NsqMsg
 from config import load_cfg
 from dotenv import load_dotenv
 from os import getenv
+from typing import List
+import threading
+
 
 # 加载环境
 load_dotenv()
 cfg_path = getenv("CONFIG_FILE_PATH")
 cfg = load_cfg(cfg_path)
+
+
+def nsq_thread(addresses: List[str]):
+    """处理消息队列线程"""
+    nsq_msg = NsqMsg(addresses)
+    nsq_msg.start()
+
 
 if __name__ == "__main__":
 
@@ -22,5 +32,7 @@ if __name__ == "__main__":
         log_name, format="{time} {level} {message}", rotation=log_size, level=log_level
     )
     bot_token = cfg["bot"]["bot_token"]
-    print(f"log name=")
+    addresses = cfg["nsq"]["addresses"]
+    thread = threading.Thread(target=nsq_thread, args=(addresses,))
+    thread.start()
     bot.run(bot_token)
