@@ -12,7 +12,7 @@ bot = commands.Bot(command_prefix="", intents=intents)
 @bot.event
 async def on_ready():
     logger.debug(f"Logged in as {bot.user} (ID: {bot.user.id})")
-    pass
+    
 
 
 @bot.event
@@ -22,7 +22,7 @@ async def on_message(message: Message):
         return
     user_id = match_user_id(message.content)
     if user_id is None:
-        logger.error(f"The msg={message.content} format is not true.")
+        logger.error(f"on_message The msg={message.content} format is not true.")
         return
     if message.content.find("Waiting to start") != -1:
         status = TriggerStatus.START
@@ -42,14 +42,15 @@ async def on_message_edit(before: Message, after: Message):
     logger.debug(f"on_message_edit before content: {before.content}")
     logger.debug(f"on_message_edit after content: {before.content}")
     if after.author == bot.user:
-        logger.debug(f"on_message owner: {bot.user}")
+        logger.debug(f"on_message_edit owner: {bot.user}")
         return
     user_id = match_user_id(after.content)
     if user_id is None:
-        logger.error(f"The msg={after.content} format is not true.")
+        logger.error(f" on_message_edit The msg={after.content} format is not true.")
         return
-
+    status = TriggerStatus.GEN
+    await write_message_to_nsq(user_id, status, after)
 
 @bot.event
-async def on_message_delete(message):
+async def on_message_delete(message: Message):
     logger.debug(f"on_message_delete content: {message.content}")
