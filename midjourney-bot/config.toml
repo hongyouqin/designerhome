@@ -1,5 +1,5 @@
 [bot]
-    bot_token = "MTE5NTI5MzQ3MDgwMjMyNTU0NA.GqANyN.grPGSrMWk9IM7VTex9gNAiE7ozNLa0kAFLfZ6Y"
+    bot_token = ""
 [logger]
     name = "bot.log"
     size = "10 MB"

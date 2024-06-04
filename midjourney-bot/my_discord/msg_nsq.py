@@ -19,7 +19,7 @@ class NsqMsg:
     def __init__(self, addresses) -> None:
         self.write = nsq.Writer(addresses)
         self.queue = Queue()
-        self.loop = tornado.ioloop.IDLoop.current()
+        self.loop = tornado.ioloop.IOLoop.current()
 
     def pub_message(self, topic: str, data: TopicData):
         """推送数据到消息队列上去
@@ -40,7 +40,11 @@ class NsqMsg:
             logger.info(f"msg pub: {data}")
             self.loop.add_callback(self._pub_msg_next)
 
-        self.write.pub(topic, message.encode(), callback)
+        try:
+            self.write.pub(topic, message.encode(), callback)
+        except Exception as e:
+            logger.error(f"Failed to publish message: {e}")
+            self.loop.add_callback(self._pub_msg_next)
 
     def start(self):
         self.loop.start()
