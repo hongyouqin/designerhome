@@ -1,6 +1,6 @@
 from my_discord.msg import TopicData
 import nsq
-import tornado.ioop
+import tornado.ioloop
 from queue import Queue, Empty
 from loguru import logger
 
@@ -17,9 +17,9 @@ class NsqMsg:
         return cls._instance
 
     def __init__(self, addresses) -> None:
-        self.write = nsq.Wrtie(addresses)
+        self.write = nsq.Writer(addresses)
         self.queue = Queue()
-        self.loop = tornado.ioop.IDLoop.current()
+        self.loop = tornado.ioloop.IDLoop.current()
 
     def pub_message(self, topic: str, data: TopicData):
         """推送数据到消息队列上去
