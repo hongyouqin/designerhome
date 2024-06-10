@@ -1,16 +1,17 @@
 from loguru import logger
 from my_discord import bot, NsqMsg
-from config import load_cfg
-from dotenv import load_dotenv
-from os import getenv
 from typing import List
 import threading
+from config import load_cfg, ConfigManager
+from dotenv import load_dotenv
+from os import getenv
 
 
 # 加载环境
 load_dotenv()
 cfg_path = getenv("CONFIG_FILE_PATH")
 cfg = load_cfg(cfg_path)
+ConfigManager.set_cfg(cfg)
 
 
 def nsq_thread(addresses: List[str]):

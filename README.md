@@ -23,6 +23,7 @@ https://discordpy.readthedocs.io/en/stable/api.html?highlight=on_message#discord
 https://github.com/discord/discord-api-docs/blob/main/docs/interactions/Application_Commands.md
 
 ## 导出环境包
+
 pip freeze > requirements.txt
 
 ## nsq 教程
@@ -30,7 +31,8 @@ pip freeze > requirements.txt
 https://www.cnblogs.com/yezigege/p/13791476.html
 
 ## 远程端口映射
-ssh -R 9914:47.101.161.124:9914 root@47.101.161.124
+
+ssh -L 9914:47.101.161.124:9914 root@47.101.161.124
 
 ## ChatGPT&Midjounery 第三方技术文章
 
@@ -43,15 +45,14 @@ https://zhuanlan.zhihu.com/p/643189533
 git config --global --unset http.proxy
 git config --global --unset https.proxy
 
-## docker安装（centor）
+## docker 安装（centor）
+
 sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 sudo yum install docker-ce docker-ce-cli containerd.io
 sudo systemctl start docker
 sudo systemctl enable docker
 
-## 安装制定的docker-compose版本
+## 安装制定的 docker-compose 版本
+
 sudo curl -L "https://github.com/docker/compose/releases/download/v2.2.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-
-
-

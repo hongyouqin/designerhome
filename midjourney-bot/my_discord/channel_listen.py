@@ -12,7 +12,6 @@ bot = commands.Bot(command_prefix="", intents=intents)
 @bot.event
 async def on_ready():
     logger.debug(f"Logged in as {bot.user} (ID: {bot.user.id})")
-    
 
 
 @bot.event
@@ -50,6 +49,7 @@ async def on_message_edit(before: Message, after: Message):
         return
     status = TriggerStatus.GEN
     await write_message_to_nsq(user_id, status, after)
+
 
 @bot.event
 async def on_message_delete(message: Message):

@@ -21,11 +21,11 @@ class NsqMsg:
         self.queue = Queue()
         self.loop = tornado.ioloop.IOLoop.current()
 
-    def pub_message(self, topic: str, data: TopicData):
+    def pub_message(self, topic: str, data: str):
         """推送数据到消息队列上去
 
         Args:
-            data (TopicData) pub
+            data (str) pub
         """
         self.queue.put((topic, data))
         self.loop.add_callback(self._pub_msg_next)

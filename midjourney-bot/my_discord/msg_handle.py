@@ -4,6 +4,8 @@ from enum import Enum
 from discord import Message
 from my_discord.msg_nsq import NsqMsg
 from my_discord.msg import TopicData, Attachment
+from config import ConfigManager
+from loguru import logger
 
 
 PROMPT_PREFIX = "<#"
@@ -30,7 +32,9 @@ def match_user_id(content: str) -> Union[str, None]:
 
 async def write_message_to_nsq(user_id: str, status: str, message: Message):
     # 获取nsq_msg单例实例
-    nsq_msg = NsqMsg()
+    cfg = ConfigManager.get_cfg()
+    addresses = cfg["nsq"]["addresses"]
+    nsq_msg = NsqMsg(addresses)
     topic = TopicData(
         user_id=user_id,
         status=status,
@@ -40,4 +44,6 @@ async def write_message_to_nsq(user_id: str, status: str, message: Message):
         ],
         message_id=message.id,
     )
-    nsq_msg.pub_message(MSG_TOPIC, topic)
+    topic_json = topic.to_dict()
+    logger.debug(topic_json)
+    nsq_msg.pub_message(MSG_TOPIC, topic_json)
